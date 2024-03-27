@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 
 	"github.com/sirupsen/logrus"
 )
@@ -21,6 +22,9 @@ func main() {
 	scanner := bufio.NewScanner(fh)
 	for i := 0; scanner.Scan(); i++ {
 		name := scanner.Text()
+		if strings.HasPrefix(name, "#") {
+			continue
+		}
 		wsNames[i] = name
 	}
 	wsCount := len(wsNames)
